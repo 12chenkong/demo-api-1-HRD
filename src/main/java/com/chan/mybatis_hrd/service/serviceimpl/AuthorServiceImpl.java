@@ -1,7 +1,7 @@
 package com.chan.mybatis_hrd.service.serviceimpl;
 
 import com.chan.mybatis_hrd.model.Author;
-import com.chan.mybatis_hrd.model.AuthorRequest;
+import com.chan.mybatis_hrd.model.dto.AuthorRequest;
 import com.chan.mybatis_hrd.repository.AuthorRepository;
 import com.chan.mybatis_hrd.service.AuthorService;
 import org.springframework.stereotype.Service;
@@ -18,7 +18,7 @@ public class AuthorServiceImpl implements AuthorService {
 
     @Override
     public List<Author> findAllAuthors() {
-        System.out.println(authorRepository.findAllAuthor());
+
         return authorRepository.findAllAuthor();
     }
 

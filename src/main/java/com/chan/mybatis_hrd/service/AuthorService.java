@@ -1,8 +1,7 @@
 package com.chan.mybatis_hrd.service;
 
 import com.chan.mybatis_hrd.model.Author;
-import com.chan.mybatis_hrd.model.AuthorRequest;
-import org.springframework.stereotype.Service;
+import com.chan.mybatis_hrd.model.dto.AuthorRequest;
 
 import java.util.List;
 

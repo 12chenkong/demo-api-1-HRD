@@ -1,9 +1,7 @@
-package com.chan.mybatis_hrd.model;
+package com.chan.mybatis_hrd.model.dto;
 
 import lombok.AllArgsConstructor;
-import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.ToString;
 
 
 @AllArgsConstructor

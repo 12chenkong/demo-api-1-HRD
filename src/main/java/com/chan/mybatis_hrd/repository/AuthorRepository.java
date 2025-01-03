@@ -1,10 +1,8 @@
 package com.chan.mybatis_hrd.repository;
 
 import com.chan.mybatis_hrd.model.Author;
-import com.chan.mybatis_hrd.model.AuthorRequest;
+import com.chan.mybatis_hrd.model.dto.AuthorRequest;
 import org.apache.ibatis.annotations.*;
-import org.springframework.http.converter.json.GsonBuilderUtils;
-import org.springframework.stereotype.Repository;
 
 import java.util.List;
 

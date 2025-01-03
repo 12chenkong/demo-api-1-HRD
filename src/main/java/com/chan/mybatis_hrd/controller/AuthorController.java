@@ -2,14 +2,13 @@ package com.chan.mybatis_hrd.controller;
 
 import com.chan.mybatis_hrd.model.APIRespone;
 import com.chan.mybatis_hrd.model.Author;
-import com.chan.mybatis_hrd.model.AuthorRequest;
+import com.chan.mybatis_hrd.model.dto.AuthorRequest;
 import com.chan.mybatis_hrd.service.AuthorService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
-import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/author")
