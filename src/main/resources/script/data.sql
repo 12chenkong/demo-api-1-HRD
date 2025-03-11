@@ -12,6 +12,7 @@ CREATE TABLE books(
 
 )
 SELECT * FROM books;
+SELECT * FROM authors WHERE gender='male';
 
 CREATE TABLE categories(
     categories_id serial primary key ,
@@ -34,8 +35,9 @@ CREATE TABLE book_category(
 SELECT  c.category_id,b.title,b.public_date,c.name FROM books AS b
 INNER  JOIN  book_category AS bc ON b.book_id = bc.book_id
 INNER JOIN categories c on bc.category_id = c.category_id
-WHERE b.book_id=2;
+WHERE b.book_id=1;
 
-
+# pagination query
+SELECT * FROM books LIMIT 3  OFFSET 1
 
 

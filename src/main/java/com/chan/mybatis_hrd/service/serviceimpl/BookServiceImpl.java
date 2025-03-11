@@ -23,8 +23,10 @@ public class BookServiceImpl implements BookService {
 
 
     @Override
-    public List<Book> findAllBooks() {
-        System.out.println(bookRepository.findAllBooks());
-        return bookRepository.findAllBooks();
+    public List<Book> findAllBooks(Integer offset,Integer limit) {
+        offset=(offset-1)*limit;
+        System.out.println(offset);
+        System.out.println(limit);
+        return bookRepository.findAllBooks(offset,limit);
     }
 }

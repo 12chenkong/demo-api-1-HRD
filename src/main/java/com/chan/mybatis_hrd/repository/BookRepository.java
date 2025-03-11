@@ -10,7 +10,7 @@ import java.util.List;
 @Mapper
 public interface BookRepository {
 
-    @Select("SELECT * FROM books  ")
+    @Select("SELECT * FROM books LIMIT #{limit}  OFFSET #{offset} ")
     @Result(
             property = "author",
             column = "author_id",
@@ -20,6 +20,7 @@ public interface BookRepository {
             property = "categories",
             column ="book_id",
             many = @Many(select = "com.chan.mybatis_hrd.repository.CategoryRepository.findAllCategoriesById"))
-    List<Book>findAllBooks();
+    List<Book>findAllBooks(@Param("offset") Integer offset,@Param("limit") Integer limit);
+
 
 }

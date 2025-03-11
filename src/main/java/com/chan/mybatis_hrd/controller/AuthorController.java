@@ -1,9 +1,11 @@
 package com.chan.mybatis_hrd.controller;
 
+import com.chan.mybatis_hrd.globalexcpetion.NotFoundExcpetion;
 import com.chan.mybatis_hrd.model.APIRespone;
 import com.chan.mybatis_hrd.model.Author;
 import com.chan.mybatis_hrd.model.dto.AuthorRequest;
 import com.chan.mybatis_hrd.service.AuthorService;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -30,17 +32,17 @@ public class AuthorController {
         return respone;
     }
 
-
    @GetMapping("/all")
     public ResponseEntity<APIRespone>findAllAuthors(){
-       System.out.println(authorService.findAllAuthors().isEmpty());
+
        if(authorService.findAllAuthors().isEmpty()){
           APIRespone respone= setAPIResponeAtrribute("fail to fetch",null,HttpStatus.NOT_FOUND);
            return new ResponseEntity<>(respone,HttpStatus.NOT_FOUND);
        }else {
-           APIRespone respone= setAPIResponeAtrribute(
-                   "Successfully added authors",
-                   authorService.findAllAuthors(),HttpStatus.OK);
+
+               APIRespone respone= setAPIResponeAtrribute(
+                       "Successfully added authors",
+                       authorService.findAllAuthors(),HttpStatus.OK);
 
            return new ResponseEntity<>(respone,HttpStatus.OK);
        }
@@ -49,6 +51,10 @@ public class AuthorController {
 
     @GetMapping("/find/{id}")
     public Author findAuthorById(@PathVariable int id){
+        if(authorService.findAuthorById(id)==null){
+            throw new NotFoundExcpetion("User with this id: "+id+" cannot be found");
+        }
+
         return authorService.findAuthorById(id);
     }
 
@@ -67,11 +73,7 @@ public class AuthorController {
 
             return new ResponseEntity<>(respone,HttpStatus.OK);
         }else {
-            APIRespone respone=setAPIResponeAtrribute(
-                    "fail to delete",
-                    null,HttpStatus.NOT_FOUND
-            );
-            return new ResponseEntity<>(respone,HttpStatus.NOT_FOUND);
+            throw new NotFoundExcpetion("User with this id: "+id+" cannot be found so cannot be delete");
         }
 
     }
@@ -80,6 +82,7 @@ public class AuthorController {
     public ResponseEntity<APIRespone> updateAuthorById(@PathVariable int id,@RequestBody AuthorRequest author){
 
        int status=authorService.updateAuthor(author,id);
+        System.out.println(status);
         if(status==1){
          APIRespone respone=   setAPIResponeAtrribute(
                     "Succesfully update author",
@@ -87,18 +90,15 @@ public class AuthorController {
             );
             return new ResponseEntity<>(respone,HttpStatus.OK);
         }else {
-            APIRespone respone=setAPIResponeAtrribute("Fail to update author",
-                    null,HttpStatus.NOT_FOUND);
-            return new ResponseEntity<>(respone,HttpStatus.NOT_FOUND);
+            throw new NotFoundExcpetion("User with this id: "+id+" cannot be found");
         }
 
     }
 
     @PostMapping("/add")
-    public ResponseEntity<APIRespone> createAuthor(@RequestBody AuthorRequest author){
+    public ResponseEntity<APIRespone> createAuthor(@RequestBody @Valid AuthorRequest author){
         int status=authorService.createAuthor(author);
         if(status==1){
-
             APIRespone respone=setAPIResponeAtrribute("Add author successfully",
                     null,HttpStatus.OK);
             return new ResponseEntity<>(respone,HttpStatus.OK);
