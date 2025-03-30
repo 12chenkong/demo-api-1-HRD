@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/author")
@@ -30,6 +31,20 @@ public class AuthorController {
         respone.setStatus(status);
 
         return respone;
+    }
+
+    @GetMapping
+    public ResponseEntity<APIRespone> getAuthorsByGender(@RequestParam String gender){
+        APIRespone respone=setAPIResponeAtrribute(
+                "succesfully fetch data",
+                authorService.getAuthorsByGender(gender),
+                HttpStatus.OK
+        );
+        return  ResponseEntity.status(HttpStatus.OK).body(
+                respone
+        );
+
+
     }
 
    @GetMapping("/all")

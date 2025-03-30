@@ -14,4 +14,6 @@ public interface AuthorService {
     int updateAuthor(AuthorRequest author,Integer id);
     int createAuthor(AuthorRequest authorRequest);
 
+    List<Author> getAuthorsByGender(String gender);
+
 }

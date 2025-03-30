@@ -26,8 +26,7 @@ public interface AuthorRepository {
     @Insert("INSERT INTO authors (name,gender) VALUES (#{author.name},#{author.gender}) ")
     int createAuthor(@Param("author") AuthorRequest authorRequest);
 
-
-
-
+    @Select("SELECT * FROM authors WHERE gender=#{gender}")
+    List<Author> findAuthorsByGender(String gender);
 
 }

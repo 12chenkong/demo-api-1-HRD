@@ -41,4 +41,9 @@ public class AuthorServiceImpl implements AuthorService {
     public int createAuthor(AuthorRequest authorRequest) {
         return authorRepository.createAuthor(authorRequest);
     }
+
+    @Override
+    public List<Author> getAuthorsByGender(String gender) {
+        return authorRepository.findAuthorsByGender(gender);
+    }
 }
